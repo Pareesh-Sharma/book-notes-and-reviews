@@ -1,0 +1,26 @@
+<%- include('partials/header', { title: title }) %>
+
+<h2>Add New Book</h2>
+<form action="/books/add" method="post">
+  <label for="title">Book Title:</label><br>
+  <input type="text" id="title" name="title" required><br>
+
+  <label for="author">Author:</label><br>
+  <input type="text" id="author" name="author"><br>
+
+  <label for="rating">Rating (0-5):</label><br>
+  <input type="number" id="rating" name="rating" min="0" max="5"><br>
+
+  <label for="review">Review/Notes:</label><br>
+  <textarea id="review" name="review"></textarea><br>
+
+  <label for="read_date">Date Read:</label><br>
+  <input type="date" id="read_date" name="read_date"><br>
+
+  <label for="isbn">ISBN (for cover):</label><br>
+  <input type="text" id="isbn" name="isbn"><br>
+
+  <button type="submit">Add Book</button>
+</form>
+
+<%- include('partials/footer') %>

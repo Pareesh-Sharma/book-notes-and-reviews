@@ -1,0 +1,36 @@
+<%- include('partials/header', { title: title }) %>
+
+<h2>Books</h2>
+
+<!-- Sorting Options -->
+<div class="sorting">
+  <a href="/books?sort=title">Sort by Title</a> |
+  <a href="/books?sort=rating">Sort by Rating</a> |
+  <a href="/books?sort=recency">Sort by Recency</a>
+</div>
+
+<ul class="book-list">
+  <% books.forEach(book => { %>
+    <li class="book-item">
+      <div class="book-cover">
+        <% if (book.cover_url) { %>
+          <img src="<%= book.cover_url %>" alt="Cover of <%= book.title %>">
+        <% } else { %>
+          <img src="/images/no-cover.png" alt="No cover available">
+        <% } %>
+      </div>
+      <div class="book-info">
+        <h3><%= book.title %> <small>(<%= book.author %>)</small></h3>
+        <p>Rating: <%= book.rating %>/5</p>
+        <p>Read on: <%= new Date(book.read_date).toLocaleDateString() %></p>
+        <p><%= book.review %></p>
+        <div class="actions">
+          <a href="/books/edit/<%= book.id %>">Edit</a>
+          <a href="/books/delete/<%= book.id %>" onclick="return confirm('Are you sure you want to delete this book?');">Delete</a>
+        </div>
+      </div>
+    </li>
+  <% }); %>
+</ul>
+
+<%- include('partials/footer') %>
